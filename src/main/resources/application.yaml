@@ -1,3 +1,51 @@
 spring:
   application:
     name: warehouse-service
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+warehouse:
+  # Sensor configuration
+  sensors:
+    temperature:
+      port: 3344
+      threshold: 35.0
+    humidity:
+      port: 3355
+      threshold: 50.0
+
+  # Simulator configuration
+  simulator:
+    enabled: true  # Toggle to enable/disable mock event generation
+    interval-ms: 5000  # Interval between simulated events (milliseconds)
+    temperature:
+      sensor-id: t1
+      min-value: 20.0
+      max-value: 45.0
+    humidity:
+      sensor-id: h1
+      min-value: 30.0
+      max-value: 65.0
+
+# RabbitMQ Exchange and Queue configuration
+messaging:
+  exchange:
+    sensor-data: sensor.data.exchange
+  queue:
+    temperature: temperature.queue
+    humidity: humidity.queue
+  routing-key:
+    temperature: sensor.temperature
+    humidity: sensor.humidity
+
+logging:
+  level:
+    com.warehouse: INFO
+    org.springframework.integration: WARN
+    org.springframework.amqp: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
