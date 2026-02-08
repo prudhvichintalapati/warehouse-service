@@ -25,3 +25,22 @@ docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```bash
 ./gradlew bootRun
 ```
+
+## 🧪 Testing
+
+### Run All Tests
+```bash
+./gradlew test
+```
+
+### Manual Testing with netcat
+
+**Send Temperature Reading:**
+```bash
+echo "sensor_id=t1; value=40" | nc -u localhost 3344
+```
+
+**Send Humidity Reading:**
+```bash
+echo "sensor_id=h1; value=60" | nc -u localhost 3355
+```
