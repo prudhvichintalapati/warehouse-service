@@ -18,7 +18,7 @@ class CentralMonitoringService {
     
     @Value("\${warehouse.sensors.humidity.threshold}")
     private var humidityThreshold: Double = 50.0
-    
+    /*
     @RabbitListener(queues = ["\${messaging.queue.temperature}"])
     fun monitorTemperature(measurement: SensorMeasurement) {
         logger.info { 
@@ -62,5 +62,5 @@ class CentralMonitoringService {
         println(alarm.getMessage())
         println("=".repeat(80) + "\n")
         logger.error { alarm.getMessage() }
-    }
+    }*/
 }
